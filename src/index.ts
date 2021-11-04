@@ -1,12 +1,4 @@
-import AxiosTryout from './axios-tryout';
-import Persona from './persona';
+import * as dotenv from "dotenv";
+dotenv.config();
 
-AxiosTryout();
-
-let persona = new Persona("Pippo");
-
-console.log(persona.nome)
-Persona.hello();
-console.log(Persona.greeting)
-console.log(persona.gimmeNumbers(5))
-console.log("Ciao")
+console.log(`${process.env.BITFINEX_API_KEY}`)
