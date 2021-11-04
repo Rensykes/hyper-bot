@@ -1,0 +1,21 @@
+{
+  "name": "futures-bot",
+  "version": "1.0.0-SNAPSHOT",
+  "description": "trading bot for futures transactions",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/index.ts"
+  },
+  "author": "Francesco Lacriola",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "nodemon": "^2.0.14",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
+  }
+}
