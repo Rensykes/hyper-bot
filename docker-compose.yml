@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  futures-bot-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src # this enables hot reload in the container
+      - ./nodemon.json:/home/node/app/nodemon.json
+    container_name: ts-node-futures-bot
+    expose:
+      - '4000'
+    ports:
+      - '4000:4000'
+    env_file:
+      - .env
+    command: npm run dev
