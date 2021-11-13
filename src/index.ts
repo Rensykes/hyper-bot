@@ -1,9 +1,20 @@
 import * as dotenv from "dotenv";
 import axios from "axios";
-import { CandlesResponse, Candle } from "./types/candles/Candles";
+//import { CandlesResponse, Candle } from "./types/candles/Candles";
 dotenv.config();
 
 console.log(`${process.env.BITFINEX_API_KEY}`);
+
+// Named this way to avoid clash with the existing Candle class
+type CandleType = [number, number, number, number, number, number];
+
+interface CandlesResponse {
+    [key: number]: CandleType
+}
+
+interface CandlesResponse2 {
+  [key: number]: CandleType
+}
 
 const candles = async () => {
   const baseUrl = "https://api-pub.bitfinex.com/v2/";
@@ -21,17 +32,19 @@ const candles = async () => {
   //let first = data[119];
   //console.log(first[1])
 
-  let candles: Candle[] = data.map(
-    (candle) =>
-      new Candle(
-        candle[0],
-        candle[1],
-        candle[2],
-        candle[3],
-        candle[4],
-        candle[5]
-      )
-  );
+  console.log(data[1][0])
+
+  // let candles: Candle[] = data.map(
+  //   (candle) =>
+  //     new Candle(
+  //       candle[0],
+  //       candle[1],
+  //       candle[2],
+  //       candle[3],
+  //       candle[4],
+  //       candle[5]
+  //     )
+  // );
   //console.log(candles[1].CLOSE)
 };
 
@@ -43,4 +56,4 @@ const symbols = async () => {
   console.log(filtered);
 };
 
-symbols();
+candles();
