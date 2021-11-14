@@ -1,19 +1,19 @@
 import * as dotenv from "dotenv";
 import axios from "axios";
-import { SingleCandleResponse, Candle } from "./types/candles/Candles";
+import { CandlesResponse, Candle } from "./types/candles/Candles";
 dotenv.config();
 
 const candles = async () => {
   const baseUrl = "https://api-pub.bitfinex.com/v2/";
   const pathParams = "candles/trade:1h:tLTCUSD/hist";
   const queryParams = "";
-  let res = await axios.get<SingleCandleResponse[]>(
+  let res = await axios.get<CandlesResponse>(
     `${baseUrl}/${pathParams}?${queryParams}`
   );
   let { data } = res;
 
   let candles = Candle.candlesBuilder(data);
-  console.log(candles[1].CLOSE);
+  console.log(candles[1].MTS);
 };
 
 const symbols = async () => {
