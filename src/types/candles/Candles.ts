@@ -1,5 +1,5 @@
 /**
- * Maps the response's internal array
+ * Maps the response's internal array (a single candle)
  *
  * [
  *
@@ -20,6 +20,14 @@ export interface SingleCandleResponse {
   [key: number]: number;
 }
 
+/**
+ * Maps the whole Candles response body
+ */
+export type CandlesResponse = SingleCandleResponse[];
+
+/**
+ * Wrapper for the Candles response giving meaningful names to the fields
+ */
 export class Candle {
   MTS: number;
   OPEN: number;
@@ -46,12 +54,10 @@ export class Candle {
 
   /**
    * Returns an array of mapped candles from an API call
-   * @param {SingleCandleResponse[]} candlesResponse return type of the candles API call
-   * @returns 
+   * @param {CandlesResponse} candlesResponse return type of the candles API call
+   * @returns
    */
-  static candlesBuilder = (
-    candlesResponse: SingleCandleResponse[]
-  ): Candle[] => {
+  static candlesBuilder = (candlesResponse: CandlesResponse): Candle[] => {
     let candles: Candle[] = candlesResponse.map(
       (candle) =>
         new Candle(
